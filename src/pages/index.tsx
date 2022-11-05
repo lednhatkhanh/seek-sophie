@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { PersonInput } from 'src/components';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+import { Input, PersonInput } from 'src/components';
 
 export default function HomePage() {
   const [value, setValue] = React.useState(0);
@@ -13,6 +15,19 @@ export default function HomePage() {
       <div className="w-96 rounded-2xl h-96 bg-white p-4">
         <form className="flex flex-col" action="POST">
           <PersonInput value={value} onValueChange={handleChange} />
+
+          <DatePicker
+            onChange={(date, event) => {
+              console.log(date);
+            }}
+            placeholderText="Select Date & Time"
+            customInput={
+              <Input
+                aria-label="Select Date & Time"
+                className='w-full'
+              />
+            }
+          />
 
           <button type="submit">Request to book</button>
         </form>
